@@ -6,25 +6,40 @@
     box-sizing: border-box;
     font-family: 'Oswald',sans-serif;
 }
-body
-{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   min-height: 100vh;
-   overflow: hidden;
-   background: #3d3d3d; 
-
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    /* Default background image */
+    background: url('./bgimg.jpg') center/cover no-repeat;
+    font-family: 'Oswald', sans-serif;
 }
 
-.container
-{
+/* Laptop view */
+@media only screen and (min-width: 768px) {
+    body {
+        background: url('./bgimg.jpg') center/cover no-repeat; /* Replace with your laptop background image URL */
+    }
+}
+
+/* Mobile view */
+@media only screen and (max-width: 767px) {
+    body {
+        background: url('./bgimg.jpg') center/cover no-repeat; /* Replace with your mobile background image URL */
+    }
+}
+
+.container {
     position: absolute;
     display: flex;
+   
+    align-items: center;
+    justify-content: center;
     transform-style: preserve-3d;
-    gap:10px;
+    gap: 10px;
     transform: rotateY(30deg) rotateX(10deg);
-
 }
 .text
 {
@@ -42,6 +57,37 @@ transform: rotateX(calc(-360deg * 1));
 .container.newyear .text:last-child
 {
 transform: rotateX(calc(-630deg * 1));
+}
+
+@media only screen and (max-width: 768px) {
+    body {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .container {
+        position: relative;
+        transform: none;
+        flex-direction: column;
+        /* justify-content: center; */
+        align-items: center;
+        
+    }
+
+    .text {
+        margin-bottom: 10px;
+        
+    }
+
+    .companyName {
+        font-size: 30px;
+    }
+
+    h2 {
+        position: static;
+        margin-top: 20px;
+        text-align: center; /* Center the text horizontally */
+    }
 }
 .text span
 {
@@ -81,14 +127,15 @@ background: linear-gradient(#29c040, #32ed4e);
 .text:last-child::before{
     background: #11a728;
 }
-h2
-{
+h2 {
     position: absolute;
     bottom: 50px;
-    color:#252525;
+    color: #252525;
     font-size: 2em;
     transition: 0.5s;
     cursor: pointer;
+    left: 50%; /* Center the element horizontally */
+    transform: translateX(-50%);
 }
 h2.active
 {
@@ -221,7 +268,23 @@ background: #f00;
         0 0 0 4px rgba(0,226, 255,0.1);
 }
 
-.companyName{
-    color:#32ed4e;
-    font-size:50px;
+.blinking-text {
+    position: absolute;
+    top: 20px; /* Adjust the top position as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+}
+
+.blinking-text span {
+    font-size: 2em;
+    color: #fff;
+    margin: 0 5px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
 }
