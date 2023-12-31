@@ -10,9 +10,7 @@
    
 
         <div class = "container">
-            <div class="companyName">
-                Apaar  Software
-            </div>
+          
             <div class="text" style ="--j:0;">
                 <span style ="--i:0;">2</span>
                 <span style ="--i:1;">3</span>
@@ -42,7 +40,11 @@
 
             </div>
         </div>
+        <h1>
+            click here
+        </h1>
    <h2>Happy New Year</h2>
+    <!-- <h1 id="clickHereText">Click Here</h1> -->
    <div class="glowing">
     <span style="--i:1;"></span>
     <span style="--i:2;"></span>
@@ -66,11 +68,38 @@
    <script>
     let h2 = document.querySelector('h2');
     let container = document.querySelector('.container');
-    h2.onclick = function(){
+
+    h2.onclick = function () {
         container.classList.toggle('newyear');
         this.classList.toggle('active');
+
+        // Add blinking text above h2
+        if (this.classList.contains('active')) {
+            addBlinkingText();
+        }
     }
-   </script>
+
+    function addBlinkingText() {
+        // Create a new div for the blinking text
+        let blinkingDiv = document.createElement('div');
+        blinkingDiv.classList.add('blinking-text');
+        document.body.insertBefore(blinkingDiv, h2);
+
+        // Create a span for each letter
+        for (let letter of "Click Here") {
+            let span = document.createElement('span');
+            span.innerText = letter;
+            blinkingDiv.appendChild(span);
+        }
+
+        // Remove the blinking text after 2 seconds
+        setTimeout(() => {
+            blinkingDiv.remove();
+        }, 2000);
+    }
+</script>
+
+
    
     </body>
 </html>
